@@ -1,0 +1,54 @@
+<h2>Reactive: Basics</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off" [formGroup]="form">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Product</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" placeholder="Product name" formControlName="name">
+          <span class="form-text text-danger" *ngIf="isInvalidField('name')">Needs to be three latter value</span>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Price</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" placeholder="Product price" formControlName="price">
+          <span class="form-text text-danger" *ngIf="isInvalidField('price')">Price needs to be 0 or greater</span>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Stock</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" placeholder="Product stock" formControlName="stock">
+          <span class="form-text text-danger" *ngIf="isInvalidField('stock')">stock needs to be 0 or greater</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit"class="btn btn-primary float-end" [disabled]="form.invalid">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre>{{form.valid}}</pre>
+
+    <span>Pristine</span>
+    <pre>{{form.pristine}}</pre>
+
+    <span>Touched</span>
+    <pre>{{form.touched}}</pre>
+
+    <span>Value</span>
+    <pre>{{form.value | json }}</pre>
+  </div>
+</div>

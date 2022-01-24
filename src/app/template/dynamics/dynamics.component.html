@@ -1,0 +1,40 @@
+<h2>Template: <small>Dynamics</small></h2>
+<hr>
+
+<form (ngSubmit)="save()" autocomplete="off" #form="ngForm">
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" [ngModel] = "person.name" placeholder="Name" required name="name">
+      <span class="form-text text-danger" *ngIf="form.controls['name']?.errors">Required field</span>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Add</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Add favorite game" [(ngModel)]="favorite" name="favorite" (keyup.enter)="add()">
+        <button class="btn btn-outline-primary" type="button" (click)="add()" name="favorite">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favorites</label>
+    <div class="col-sm-9">
+      <div class="input-group mb-1" *ngFor="let favorite of person.favorites; let i = index">
+        <input type="text" class="form-control"
+               [(ngModel)]="favorite.name" [name]="favorite.name">
+        <button class="btn btn-outline-danger" type="button" (click)="remove(i)">Remove</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+     <button type="button" class="btn btn-primary float-end" (click)="save()" [disabled]="form.invalid">Save</button>
+    </div>
+  </div>
+</form>
